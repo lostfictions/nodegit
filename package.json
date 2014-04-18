@@ -38,7 +38,8 @@
     "q": "~0.9.6",
     "fs-extra": "0.6.0",
     "nan": "0.8.0",
-    "rimraf": "~2.2.6"
+    "rimraf": "~2.2.6",
+    "promisify-node": "~0.1.2"
   },
   "devDependencies": {
     "jshint": "~2.4.4",
