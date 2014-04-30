@@ -51,15 +51,18 @@ promisify(rawApi, function(func, keyName, parentKeyName) {
 
   if (descriptor && descriptor.functions) {
     // Find the nested function in the descriptor.
+    if (parentKeyName.indexOf("Repo") > -1) { console.log(arguments); }
     var nestedFunction = descriptor.functions.filter(function(nestedFunction) {
-      if (nestedFunction.jsFunctionName === func.name) {
+      var test = keyName || func.name || parentKeyName;
+
+      if (nestedFunction.jsFunctionName === keyName) {
         return func.isPrototypeMethod === isPrototypeMethod;
       }
     })[0];
 
     // Verify it is an asynchronous method.
-    //console.log(func && func.isAsync);
-    return !!(nestedFunction && nestedFunction.isAsync);
+    //console.log(nestedFunction && nestedFunction.isAsync);
+    return nestedFunction && nestedFunction.isAsync;
   }
 });
 
