@@ -257,9 +257,6 @@
         "vendor/libgit2/src/transports/smart_pkt.c",
         "vendor/libgit2/src/transports/smart_protocol.c",
         "vendor/libgit2/src/transports/ssh.c",
-        "vendor/libgit2/src/unix/map.c",
-        "vendor/libgit2/src/unix/posix.h",
-        "vendor/libgit2/src/unix/realpath.c",
         "vendor/libgit2/src/xdiff/xdiff.h",
         "vendor/libgit2/src/xdiff/xdiffi.c",
         "vendor/libgit2/src/xdiff/xdiffi.h",
@@ -277,6 +274,13 @@
         "vendor/libgit2/src/xdiff/xutils.h"
       ],
       "conditions": [
+        ["OS=='win'", {}, {
+          "sources": [
+            "vendor/libgit2/src/unix/map.c",
+            "vendor/libgit2/src/unix/posix.h",
+            "vendor/libgit2/src/unix/realpath.c",
+          ]
+        }],
         ["OS=='linux'", {
           "cflags": [
             "-w",
@@ -327,6 +331,7 @@
             "vendor/libgit2/src/win32/findfile.c",
             "vendor/libgit2/src/win32/findfile.h",
             "vendor/libgit2/src/win32/git2.rc",
+            "vendor/libgit2/src/win32/map.c",
             "vendor/libgit2/src/win32/mingw-compat.h",
             "vendor/libgit2/src/win32/msvc-compat.h",
             "vendor/libgit2/src/win32/posix.h",
