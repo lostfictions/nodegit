@@ -9,6 +9,8 @@ var tar = require('tar');
 var which = require('which');
 var rimraf = require('rimraf');
 
+var nwver = require('./package.json').nwVersion;
+
 // This will take in an object and find any matching keys in the environment
 // to use as overrides.
 //
@@ -114,7 +116,7 @@ var dependencies = Q.allSettled([
   console.info('[nodegit] Configuring native node module.');
 
   return Q.nfcall(exec, systemPath([
-    '.', 'node_modules', '.bin', 'node-gyp configure --python ' + python
+    '.', 'node_modules', '.bin', 'nw-gyp configure --target=' + nwver
   ]), {
     cwd: '.'
   });
@@ -125,7 +127,7 @@ var dependencies = Q.allSettled([
   console.info('[nodegit] Building native node module.');
 
   return Q.nfcall(exec, systemPath([
-    '.', 'node_modules', '.bin', 'node-gyp build'
+    '.', 'node_modules', '.bin', 'nw-gyp build'
   ]), {
     cwd: '.',
     maxBuffer: Number.MAX_VALUE
